@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import { useState } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import { Navbar } from 'react-bootstrap';
 import './App.css';
 import Editor from './components/Editor';
 import ExampleDocument from './utils/ExampleDocument';
@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Navbar bg="dark" variant="dark">
-        <NavbarBrand href="#">
+        <Navbar.Brand href="#">
           <img
             alt=""
             src="/app-icon.png"
@@ -19,7 +19,7 @@ function App() {
             className="d-inline-block align-top"
           />{" "}
           WYSIWYG Editor
-        </NavbarBrand>
+        </Navbar.Brand>
       </Navbar>
       <div className="App">
         <Editor document={document} onChange={updateDocument} />
