@@ -1,7 +1,7 @@
 import { DefaultElement } from "slate-react";
 
 export default function useEditorConfig(editor) {
-  return { renderElement };
+  return { renderElement, renderLeaf };
 }
 
 function renderElement(props) {
@@ -21,4 +21,26 @@ function renderElement(props) {
       // For the default case, we delegate to Slate's default rendering.
       return <DefaultElement {...props} />;
   }
+}
+
+function renderLeaf({ attributes, children, leaf }) {
+  let el = <>{children}</>;
+
+  if (leaf.bold) {
+    el = <strong>{el}</strong>;
+  }
+
+  if (leaf.code) {
+    el = <code>{el}</code>;
+  }
+
+  if (leaf.italic) {
+    el = <em>{el}</em>;
+  }
+
+  if (leaf.underline) {
+    el = <u>{el}</u>;
+  }
+
+  return <span {...attributes}>{el}</span>;
 }
