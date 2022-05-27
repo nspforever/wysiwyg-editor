@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Navbar } from 'react-bootstrap';
 import './App.css';
 import Editor from './components/Editor';
+import Toolbar from './components/Toolbar';
 import ExampleDocument from './utils/ExampleDocument';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           WYSIWYG Editor
         </Navbar.Brand>
       </Navbar>
+      <Toolbar></Toolbar>
       <div className="App">
         <Editor document={document} onChange={updateDocument} />
       </div>

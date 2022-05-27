@@ -1,3 +1,5 @@
+import "./Editor.css";
+
 import { Editable, Slate, withReact } from "slate-react";
 
 import { createEditor } from "slate";
