@@ -4,7 +4,7 @@ import { Editable, Slate, withReact } from "slate-react";
 
 import { createEditor } from "slate";
 import { useMemo } from "react";
-import useEditorConfig from "./EditorConfig";
+import useEditorConfig from "../hooks/useEditorConfig";
 
 
 export default function Editor({ document, onChange }) {
