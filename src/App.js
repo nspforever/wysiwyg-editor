@@ -22,7 +22,6 @@ function App() {
           WYSIWYG Editor
         </Navbar.Brand>
       </Navbar>
-      <Toolbar></Toolbar>
       <div className="App">
         <Editor document={document} onChange={updateDocument} />
       </div>
