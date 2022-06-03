@@ -1,4 +1,4 @@
-import { Editor, Transforms } from "slate";
+import { Editor, Transforms, Range, Element } from "slate";
 
 export function getActiveStyles(editor) {
   return new Set(Object.keys(Editor.marks(editor) ?? {}));
@@ -64,5 +64,39 @@ export function isLinkNodeAtSelection(editor, selection) {
       match: (n) => n.type === "link",
     }) != null
   );
+}
+
+export function toggleLinkAsSelection(editor) {
+  if (!isLinkNodeAtSelection(editor, editor.selection)) {
+    const isSelectionCollapsed = Range.isCollapsed(editor.selection)
+    if (isSelectionCollapsed) {
+      Transforms.insertNodes(
+        editor,
+        {
+          type: "link",
+          url: '#',
+          children: [{text: 'link'}],
+        },
+        { at: editor.selection }
+      );
+    } else {
+      Transforms.wrapNodes(
+        editor,
+        {
+          type: "link",
+          url: '#',
+          children: [{text: ''}],
+        },
+        { split: true, at: editor.selection },
+      );
+    }
+  } else {
+    Transforms.unwrapNodes(
+      editor,
+      {
+        match: (n) => Element.isElement(n) && n.type === "link",
+      }
+    );
+  }
 }
 

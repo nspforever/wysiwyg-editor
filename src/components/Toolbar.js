@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { getActiveStyles, getTextBlockStyle, isLinkNodeAtSelection, toggleBlockType, toggleStyle } from "../utils/EditorUtils";
+import { getActiveStyles, getTextBlockStyle, isLinkNodeAtSelection, toggleBlockType, toggleLinkAsSelection, toggleStyle } from "../utils/EditorUtils";
 import { useSlateStatic } from "slate-react";
 
 const PARAGRAPH_STYLES = ["h1", "h2", "h3", "h4", "paragraph", "multiple"];
@@ -56,6 +56,7 @@ export default function Toolbar({ selection, previousSelection }) {
         key={"link"}
         icon={<i className={`bi ${getIconForButton("link")}`} />}
         isActive={isLinkNodeAtSelection(editor, editor.selection)}
+        onMouseDown={ () => toggleLinkAsSelection(editor) }
       />
     </div>
   );
